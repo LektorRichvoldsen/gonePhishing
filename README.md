@@ -76,6 +76,11 @@ C:\Windows\System32\drivers\etc
 195.88.55.16            erik.com
 192.168.02.13		vg.no
 ```
+Flush DNS for å få inn endringene:
+```
+ipconfig /flushdns
+```
+
 ## Linux
 ```console
 /etc/hosts
@@ -93,4 +98,17 @@ ff02::2 ip6-allrouters
 
 10.2.1.52 vg.no
 ```
+Oppdater DNS
+```
+sudo resolvectl flush-caches
+```
+## Test med ping
+Ping vg.no for å se som du sendes til den din egen server. Prøv også å gå til [navnet ditt].com i en nettleser og se om den tar deg til VG.
 
+# 4. Wireshark
+
+Når data sendes over et nettverk, blir de brutt opp i 'pakker'. Wireshark er et program som overvåker et nettverkskort, og kan registrere alle pakker som sendes og mottas på det kortet.
+
+Du overvåker altså Ethernet ELLER Wi-Fi, ikke all trafikken på en maskin.
+
+Installer Wireshark på maskinen du kjører Flask-serveren (den med IP-adressen du pekte til i hosts-fila).
