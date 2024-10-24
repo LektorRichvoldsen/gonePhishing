@@ -13,13 +13,35 @@ Lag en katalog for prosjektet som har følgende struktur:
 ```     
 📂phishing
  ┣ 📜app.py
- ┣ 📂templates
- ┃ ┗ 📜form.html
+ ┗ 📂templates
+    ┗ 📜form.html
 ```
 app.py:
 ```python
-import Flask, request, render_page
-ting = tang 
+from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello_world():
+    return 'Hello World'
+
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+
+@app.route('/hack', methods=['GET', 'POST'])
+def hack():
+    navn = request.form['name']
+    print(navn)
+    return 'Funka'
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
 ```
 
 form.html:
@@ -44,8 +66,38 @@ Installeres med
 ```console
 pip install gunicorn
 ```
+Lag en fil i prosjektmappa som heter gunicorn_config.py
 
-Putt inn instrukt fra webside
+```     
+📂phishing
+ ┣ 📜app.py
+ ┣ 📜gunicorn_config.py
+ ┗ 📂templates
+    ┗ 📜form.html
+```
+
+```python
+import os
+
+workers = int(os.environ.get('GUNICORN_PROCESSES', '2'))
+
+threads = int(os.environ.get('GUNICORN_THREADS', '4'))
+
+# timeout = int(os.environ.get('GUNICORN_TIMEOUT', '120'))
+
+bind = os.environ.get('GUNICORN_BIND', '0.0.0.0:8080')
+
+forwarded_allow_ips = '*'
+```
+
+Start Gunicorn:
+```terminal
+gunicorn --config gunicorn_config.py app:app
+```
+Den første 'app'-en er navnet på python-filen din.
+
+Test ved å åpne nettleser på en annen maskin og gå til [din ip]:8080 (mulig port 8080 må åpnes i brannmur)
+
 # 3. Endre hosts-fil
 DNS er en slags telefonkatalog som gjør at du kan skrive 'vg.no' i stedet for '195.88.54.16' når du vil lese clickbait om kjendiser.
 
