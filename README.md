@@ -72,7 +72,12 @@ form.html:
 </body>
 </html>
 ```
+
+Test websiden ved å kjøre app.py, og så gå til en nettleser og åpne localhost:5000
+
 # 2. Gunicorn
+
+OBS, Gunicorn fungerer bare på Linux!
 
 Installeres med 
 ```console
