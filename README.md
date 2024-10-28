@@ -9,6 +9,11 @@ I dette prosjektet skal du gjøre følgende:
 
 # 1. Flask
 
+Installer Flask:
+```terminal
+pip install flask
+```
+
 Lag en katalog for prosjektet som har følgende struktur:
 ```     
 📂phishing
